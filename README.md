@@ -48,10 +48,10 @@ gem install google-adk
 
 ### Configuration
 
-Set your Gemini API key before using the gem:
+Set your Gemini API key as an environment variable:
 
 ```bash
-# Via environment variable (recommended)
+# In your terminal or add to ~/.bashrc, ~/.zshrc, etc.
 export GEMINI_API_KEY="your-api-key-here"
 ```
 
@@ -74,8 +74,7 @@ end
 ```ruby
 require 'google-adk'
 
-# Ensure API key is set
-ENV['GEMINI_API_KEY'] ||= 'your-api-key-here'
+# API key should be set as environment variable (see Configuration section)
 
 # Create an agent
 agent = Google::ADK::LlmAgent.new(
@@ -302,6 +301,16 @@ agent = Google::ADK::LlmAgent.new(
   instructions: 'You are an expert analyst'
 )
 ```
+
+## Supported Providers
+
+| Provider | Status | Models |
+|----------|---------|---------|
+| **Google Gemini** | ✅ Supported | gemini-2.0-flash, gemini-1.5-flash, gemini-1.5-pro, gemini-pro |
+| **OpenAI** | ❌ Not Supported | GPT-4, GPT-3.5 (TODO) |
+| **Anthropic** | ❌ Not Supported | Claude 3 (TODO) |
+| **Local Models** | ❌ Not Supported | Ollama, LLaMA (TODO) |
+
 
 ## Examples
 
