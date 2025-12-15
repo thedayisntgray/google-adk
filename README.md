@@ -3,7 +3,6 @@
 Ruby implementation of Google's Agent Development Kit for building AI agents.
 
 [![Gem Version](https://badge.fury.io/rb/google-adk.svg)](https://badge.fury.io/rb/google-adk)
-[![Build Status](https://github.com/yourusername/google-adk-ruby/workflows/CI/badge.svg)](https://github.com/yourusername/google-adk-ruby/actions)
 
 > **⚠️ DISCLAIMER: This is an UNOFFICIAL Ruby port of Google's Agent Development Kit (ADK). This gem is not affiliated with, endorsed by, or maintained by Google. It is a community-driven implementation based on the public Python ADK repository. Use at your own risk.**
 
