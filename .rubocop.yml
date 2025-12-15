@@ -1,0 +1,42 @@
+require:
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 3.1
+  NewCops: enable
+  Exclude:
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+
+Style/Documentation:
+  Enabled: true
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'google-adk.gemspec'
+
+RSpec/MultipleExpectations:
+  Max: 4
+
+RSpec/ExampleLength:
+  Max: 10
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
+
+RSpec/IndexedLet:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 120
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+Style/FrozenStringLiteralComment:
+  Enabled: true

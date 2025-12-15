@@ -1,0 +1,63 @@
+/.bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+
+# rspec failure tracking
+.rspec_status
+
+# Environment variables and secrets
+.env
+.env.*
+*.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# API keys and credentials
+**/secrets/
+**/credentials/
+*.pem
+*.key
+*.cert
+*.pfx
+*.p12
+
+# IDE and system files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Test VCR cassettes that might contain API responses
+spec/fixtures/vcr_cassettes/
+
+# Local development notes
+notes.md
+TODO.md
+scratch/
+
+# Internal documentation (not for distribution)
+docs/internal/
+
+# Ruby version managers
+.ruby-version
+.ruby-gemset
+.rvmrc
+
+# Bundler
+Gemfile.lock.bak
+
+# Build artifacts
+*.gem
+*.rbc
+
+# YARD documentation
+.yardopts
