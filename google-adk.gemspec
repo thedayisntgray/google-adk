@@ -5,18 +5,18 @@ require_relative "lib/google/adk/version"
 Gem::Specification.new do |spec|
   spec.name = "google-adk"
   spec.version = Google::ADK::VERSION
-  spec.authors = ["Your Name"]
-  spec.email = ["your.email@example.com"]
+  spec.authors = ["Landon Gray"]
+  spec.email = ["thedayisntgray@gmail.com"]
 
   spec.summary = "Unofficial Ruby implementation of Google's Agent Development Kit"
   spec.description = "UNOFFICIAL Ruby port of Google's Agent Development Kit (ADK). This gem is not affiliated with, endorsed by, or maintained by Google. Build, evaluate, and deploy AI agents using the ADK framework in Ruby."
-  spec.homepage = "https://github.com/yourusername/google-adk-ruby"
+  spec.homepage = "https://github.com/thedayisntgray/google-adk"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.1.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/yourusername/google-adk-ruby"
-  spec.metadata["changelog_uri"] = "https://github.com/yourusername/google-adk-ruby/blob/main/CHANGELOG.md"
+  spec.metadata["source_code_uri"] = "https://github.com/thedayisntgray/google-adk"
+  spec.metadata["changelog_uri"] = "https://github.com/thedayisntgray/google-adk/blob/main/CHANGELOG.md"
   spec.metadata["documentation_uri"] = "https://rubydoc.info/gems/google-adk"
   spec.metadata["rubygems_mfa_required"] = "true"
 
