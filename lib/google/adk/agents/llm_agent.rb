@@ -5,6 +5,8 @@ require_relative "../tools/base_tool"
 require_relative "../tools/function_tool"
 require_relative "../tools/agent_tool"
 require_relative "../clients/gemini_client"
+require_relative "../clients/anthropic_client"
+require_relative "../clients/openrouter_client"
 
 module Google
   module ADK
@@ -119,8 +121,8 @@ module Google
       def run_async(message, context: nil)
         Enumerator.new do |yielder|
           begin
-            # Initialize Gemini client
-            client = GeminiClient.new
+            # Initialize appropriate client based on model
+            client = create_client_for_model(canonical_model)
             
             # Build simple message for now
             messages = [{ role: "user", content: message }]
@@ -211,13 +213,21 @@ module Google
             
           rescue => e
             # Error handling
-            puts "[DEBUG] Gemini error: #{e.message}" if ENV["DEBUG"]
+            puts "[DEBUG] LLM error: #{e.message}" if ENV["DEBUG"]
             puts "[DEBUG] Backtrace: #{e.backtrace.first(3).join(', ')}" if ENV["DEBUG"]
+            
+            api_key_msg = if canonical_model.to_s.downcase.include?("openrouter") || ENV["USE_OPENROUTER"]
+                            "Please check your OPENROUTER_API_KEY."
+                          elsif canonical_model.to_s.downcase.include?("claude") || ENV["USE_ANTHROPIC"]
+                            "Please check your ANTHROPIC_API_KEY."
+                          else
+                            "Please check your GEMINI_API_KEY or GOOGLE_API_KEY."
+                          end
             
             event = Event.new(
               invocation_id: context&.invocation_id || "inv-#{SecureRandom.uuid}",
               author: @name,
-              content: "Error calling Gemini API: #{e.message}. Please check your GEMINI_API_KEY."
+              content: "Error calling LLM API: #{e.message}. #{api_key_msg}"
             )
             yielder << event
             context&.add_event(event) if context
@@ -300,6 +310,20 @@ module Google
         rescue => e
           puts "[DEBUG] Tool error: #{e.message}" if ENV["DEBUG"]
           { error: "Tool error: #{e.message}" }
+        end
+      end
+
+      # Create appropriate client based on model name
+      #
+      # @param model [String] Model name
+      # @return [GeminiClient, AnthropicClient, OpenRouterClient] Appropriate client instance
+      def create_client_for_model(model)
+        if model.to_s.downcase.include?("openrouter") || ENV["USE_OPENROUTER"]
+          OpenRouterClient.new
+        elsif model.to_s.downcase.include?("claude") || ENV["USE_ANTHROPIC"]
+          AnthropicClient.new
+        else
+          GeminiClient.new
         end
       end
 

@@ -12,8 +12,8 @@ module Google
       attr_reader :api_key
 
       def initialize(api_key: nil)
-        @api_key = api_key || ENV["GEMINI_API_KEY"]
-        raise ConfigurationError, "GEMINI_API_KEY not set" unless @api_key
+        @api_key = api_key || ENV["GEMINI_API_KEY"] || ENV["GOOGLE_API_KEY"]
+        raise ConfigurationError, "GEMINI_API_KEY or GOOGLE_API_KEY not set" unless @api_key
         
         @client = Faraday.new(API_BASE_URL) do |conn|
           conn.request :json

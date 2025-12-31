@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "../clients/gemini_client"
+require_relative "../clients/anthropic_client"
 require "securerandom"
 
 module Google
@@ -14,7 +15,7 @@ module Google
         @name = name
         @instructions = instructions
         @tools = tools
-        @client = GeminiClient.new
+        @client = create_client_for_model(model)
       end
 
       # Simple synchronous call to Gemini
@@ -60,6 +61,20 @@ module Google
             )
             yielder << error_event
           end
+        end
+      end
+
+      private
+
+      # Create appropriate client based on model name
+      #
+      # @param model [String] Model name
+      # @return [GeminiClient, AnthropicClient] Appropriate client instance
+      def create_client_for_model(model)
+        if model.to_s.downcase.include?("claude") || ENV["USE_ANTHROPIC"]
+          AnthropicClient.new
+        else
+          GeminiClient.new
         end
       end
     end

@@ -18,6 +18,8 @@ require_relative "adk/tools/base_tool"
 require_relative "adk/tools/function_tool"
 require_relative "adk/tools/agent_tool"
 require_relative "adk/clients/gemini_client"
+require_relative "adk/clients/anthropic_client"
+require_relative "adk/clients/openrouter_client"
 require_relative "adk/runner"
 
 module Google
